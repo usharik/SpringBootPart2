@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="admin/fragments/header :: head"></head>
+
+<body class="bg-light">
+
+<div th:replace="admin/fragments/header :: header"></div>
+
+<div class="d-flex">
+    <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+
+    <div class="content p-4">
+        <h2 class="mb-4" th:if="${edit != null}" >Edit user</h2>
+        <h2 class="mb-4" th:if="${create != null}" >Create user</h2>
+
+        <form th:object="${user}" method="post" th:action="@{/admin/user}">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <input th:type="hidden" th:field="*{id}">
+                    <div class="form-group">
+                        <label for="username">User name</label>
+                        <input th:field="*{userName}" type="text" class="form-control" id="username" placeholder="Enter user name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input th:field="*{password}" type="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="roles">User roles</label>
+                        <select multiple class="form-control" id="roles" th:field="*{roles}" required>
+                            <option th:each="role : ${roles}"
+                                    th:text="${role.name}"
+                                    th:value="${role.id}"
+                                    th:selected="${user.roles.contains(role)}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-footer bg-white">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script th:src="@{/admin/js/jquery.min.js}"></script>
+<script th:src="@{/admin/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/admin/js/bootadmin.min.js}"></script>
+
+</body>
+</html>

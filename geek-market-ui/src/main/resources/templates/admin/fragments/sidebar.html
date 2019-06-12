@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<body class="bg-light">
+
+    <div th:fragment="sidebar" class="sidebar sidebar-dark bg-dark">
+        <ul class="list-unstyled">
+            <li th:classappend="${activePage == 'Users'} ? active"><a th:href="@{/admin/users}"><i class="fa fa-fw fa-link"></i>
+                Users</a></li>
+            <li th:classappend="${activePage == 'Roles'} ? active"><a th:href="@{/admin/roles}"><i class="fa fa-fw fa-link"></i>
+                Roles</a></li>
+            <li th:classappend="${activePage == 'Categories'} ? active"><a th:href="@{/admin/categories}"><i
+                    class="fa fa-fw fa-link"></i> Categories</a></li>
+            <li th:classappend="${activePage == 'Products'} ? active"><a th:href="@{/admin/products}"><i
+                    class="fa fa-fw fa-link"></i> Products</a></li>
+        </ul>
+    </div>
+
+</body>
+
+</html>

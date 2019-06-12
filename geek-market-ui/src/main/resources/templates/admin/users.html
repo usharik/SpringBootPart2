@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="admin/fragments/header :: head"></head>
+
+<body class="bg-light">
+
+<div th:replace="admin/fragments/header :: header"></div>
+
+<div class="d-flex">
+    <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+
+    <div class="content p-4">
+        <h2 class="mb-4">User list</h2>
+
+        <div class="card mb-4">
+
+            <div class="card-body">
+                <form class="form-group" th:action="@{/admin/user/create}">
+                    <button type="submit" class="btn btn-primary">Create new</button>
+                </form>
+
+                <table id="users" class="table table-hover" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Username</th>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Email</th>
+                        <th class="actions">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="usr : ${users}">
+                        <td th:text="${usr.id}"></td>
+                        <td th:text="${usr.userName}">Admin</td>
+                        <td th:text="${usr.firstName}"></td>
+                        <td th:text="${usr.lastName}"></td>
+                        <td th:text="${usr.email}"></td>
+                        <td>
+                            <a th:href="@{user/{id}/edit(id=${usr.id})}" class="btn btn-icon btn-pill btn-primary" data-toggle="tooltip" title="Edit"><i class="fa fa-fw fa-edit"></i></a>
+                            <a th:href="@{user/{id}/delete(id=${usr.id})}" class="btn btn-icon btn-pill btn-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-fw fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/admin/js/jquery.min.js}"></script>
+<script th:src="@{/admin/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/admin/js/bootadmin.min.js}"></script>
+<script th:src="@{/admin/js/datatables.min.js}"></script>
+<script>
+    $(document).ready(function () {
+        $('#users').DataTable();
+    });
+</script>
+
+</body>
+</html>

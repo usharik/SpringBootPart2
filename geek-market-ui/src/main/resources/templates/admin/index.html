@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="admin/fragments/header :: head"></head>
+
+<body class="bg-light">
+
+<div th:replace="admin/fragments/header :: header"></div>
+
+<div class="d-flex">
+    <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+
+    <div class="content p-4">
+        <h2 class="mb-4">Blank/Starter</h2>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                Index Admin page
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/admin/js/jquery.min.js}"></script>
+<script th:src="@{/admin/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/admin/js/bootadmin.min.js}"></script>
+
+</body>
+</html>

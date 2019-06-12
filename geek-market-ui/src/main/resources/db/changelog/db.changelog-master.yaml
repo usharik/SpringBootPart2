@@ -1,0 +1,133 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: root
+          password: root
+
+  - changeSet:
+      id: 1
+      author: aleks_usharovskii
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(50)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(512)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(50)
+              - column:
+                  name: last_name
+                  type: varchar(50)
+              - column:
+                  name: email
+                  type: varchar(50)
+
+  - changeSet:
+      id: 2
+      author: aleks_usharovskii
+      comment: "Create admin user"
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: "admin"
+              - column:
+                  name: password
+                  value: "$2a$10$uedJ6jkBS08x5mxZY6gV6.LAKSd202CiVutxz5VDq3TIyj9alkmIq"
+
+  - changeSet:
+      id: 3
+      author: aleks_usharovskii
+      changes:
+        - createTable:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    unique: true
+                    nullable: false
+
+  - changeSet:
+      id: 4
+      author: aleks_usharovskii
+      comment: "Create default user roles"
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: "ROLE_ADMIN"
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: "ROLE_CLIENT"
+
+
+  - changeSet:
+      id: 5
+      author: aleks_usharovskii
+      changes:
+        - createTable:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_user_id
+                    references: users(id)
+                    nullable: false
+              - column:
+                  name: role_id
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_role_id
+                    references: roles(id)
+                    nullable: false
+
+  - changeSet:
+      id: 6
+      author: aleks_usharovskii
+      comment: "Assign ADMIN role to admin user"
+      changes:
+        - insert:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: role_id
+                  value: 1
