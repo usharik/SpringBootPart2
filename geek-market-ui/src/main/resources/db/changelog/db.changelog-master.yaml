@@ -28,7 +28,6 @@ databaseChangeLog:
                   name: password
                   type: varchar(512)
                   constraints:
-                    unique: true
                     nullable: false
               - column:
                   name: first_name
