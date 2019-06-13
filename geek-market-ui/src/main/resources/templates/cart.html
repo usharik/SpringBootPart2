@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header.html :: head"></head>
+
+<body>
+<!-- HEADER -->
+<header th:replace="fragments/header.html :: header"></header>
+<!-- /HEADER -->
+
+<!-- NAVIGATION -->
+<nav th:replace="fragments/header.html :: navigation"></nav>
+<!-- /NAVIGATION -->
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="breadcrumb-header">Regular Page</h3>
+                <ul class="breadcrumb-tree">
+                    <li><a href="#">Home</a></li>
+                    <li class="active">Cart</li>
+                </ul>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+<!-- NEWSLETTER -->
+<div th:replace="fragments/footer.html :: newsletter"></div>
+<!-- /NEWSLETTER -->
+
+<!-- FOOTER -->
+<footer th:replace="fragments/footer.html :: footer"></footer>
+<!-- /FOOTER -->
+
+<!-- jQuery Plugins -->
+<script th:replace="fragments/footer.html :: scripts"></script>
+
+</body>
+</html>

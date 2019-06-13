@@ -52,9 +52,7 @@
     </div>
 </div>
 
-<script th:src="@{/admin/js/jquery.min.js}"></script>
-<script th:src="@{/admin/js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{/admin/js/bootadmin.min.js}"></script>
+<script th:replace="admin/fragments/footer :: scripts"></script>
 <script th:src="@{/admin/js/datatables.min.js}"></script>
 <script>
     $(document).ready(function () {
