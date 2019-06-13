@@ -212,6 +212,8 @@
 							<div class="form-group">
 								<input class="primary-btn order-submit" type="submit" name="submit">
 							</div>
+
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 						</form>
 					</div>
 				</div>
