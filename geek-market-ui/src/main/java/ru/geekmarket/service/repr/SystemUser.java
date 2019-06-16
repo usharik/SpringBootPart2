@@ -1,4 +1,4 @@
-package ru.geekmarket.service.model;
+package ru.geekmarket.service.repr;
 
 import ru.geekmarket.persist.model.Role;
 import ru.geekmarket.persist.model.User;

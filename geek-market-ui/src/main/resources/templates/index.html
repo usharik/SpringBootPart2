@@ -96,15 +96,10 @@
 								<div id="tab1" class="tab-pane active">
 									<div class="products-slick" data-nav="#slick-nav-1">
 
-										<div th:replace="fragments/product.html :: product (1, './img/product01.png', 'Product 1', 'Category', '$999', '$888', 4)"></div>
+										<th:block th:each="prod : ${products}">
+											<div th:replace="fragments/product.html :: product (${prod.id}, ${prod.pictures[0].id}, ${prod.name}, ${prod.categoriesAsString}, ${prod.price}, ${prod.price}, 5)"></div>
+										</th:block>
 
-										<div th:replace="fragments/product.html :: product (2, './img/product02.png', 'Product 2', 'Category', '$999', '$888', 3)"></div>
-
-										<div th:replace="fragments/product.html :: product (3, './img/product03.png', 'Product 3', 'Category', '$999', '$888', 5)"></div>
-
-										<div th:replace="fragments/product.html :: product (4, './img/product04.png', 'Product 4', 'Category', '$999', '$888', 5)"></div>
-
-										<div th:replace="fragments/product.html :: product (5, './img/product05.png', 'Product 5', 'Category', '$999', '$888', 5)"></div>
 									</div>
 									<div id="slick-nav-1" class="products-slick-nav"></div>
 								</div>
@@ -197,15 +192,9 @@
 								<div id="tab2" class="tab-pane fade in active">
 									<div class="products-slick" data-nav="#slick-nav-2">
 
-										<div th:replace="fragments/product.html :: product (1, './img/product01.png', 'Product 1', 'Category', '$999', '$888', 4)"></div>
-
-										<div th:replace="fragments/product.html :: product (2, './img/product02.png', 'Product 2', 'Category', '$999', '$888', 3)"></div>
-
-										<div th:replace="fragments/product.html :: product (3, './img/product03.png', 'Product 3', 'Category', '$999', '$888', 5)"></div>
-
-										<div th:replace="fragments/product.html :: product (4, './img/product04.png', 'Product 4', 'Category', '$999', '$888', 5)"></div>
-
-										<div th:replace="fragments/product.html :: product (5, './img/product05.png', 'Product 5', 'Category', '$999', '$888', 5)"></div>
+										<th:block th:each="prod : ${products}">
+											<div th:replace="fragments/product.html :: product (${prod.id}, ${prod.pictures[0].id}, ${prod.name}, ${prod.categoriesAsString}, ${prod.price}, ${prod.price}, 5)"></div>
+										</th:block>
 									</div>
 									<div id="slick-nav-2" class="products-slick-nav"></div>
 								</div>

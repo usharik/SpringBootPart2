@@ -10,21 +10,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.geekmarket.persist.model.User;
 import ru.geekmarket.persist.repo.RoleRepository;
-import ru.geekmarket.service.model.SystemUser;
+import ru.geekmarket.service.repr.SystemUser;
 import ru.geekmarket.service.UserService;
 
 import javax.validation.Valid;
 
 @Controller
-public class AdminController {
+public class AdminUserController {
 
     private final RoleRepository roleRepository;
 
     private final UserService userService;
 
     @Autowired
-    public AdminController(RoleRepository roleRepository,
-                           @Lazy UserService userService) {
+    public AdminUserController(RoleRepository roleRepository,
+                               @Lazy UserService userService) {
         this.roleRepository = roleRepository;
         this.userService = userService;
     }
@@ -72,21 +72,15 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
+    @GetMapping("/admin/user/{id}/delete")
+    public String adminDeleteUser(Model model, @PathVariable("id") Long id) {
+        userService.delete(id);
+        return "admin/users";
+    }
+
     @GetMapping("/admin/roles")
     public String adminRolesPage(Model model) {
         model.addAttribute("activePage", "Roles");
-        return "admin/index";
-    }
-
-    @GetMapping("/admin/categories")
-    public String adminCategoriesPage(Model model) {
-        model.addAttribute("activePage", "Categories");
-        return "admin/index";
-    }
-
-    @GetMapping("/admin/products")
-    public String adminProductsPage(Model model) {
-        model.addAttribute("activePage", "Products");
         return "admin/index";
     }
 }

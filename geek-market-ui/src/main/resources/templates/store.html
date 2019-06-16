@@ -222,68 +222,9 @@
 						<!-- store products -->
 						<div class="row">
 							<!-- product -->
-							<div class="col-md-4 col-xs-6">
-								<div th:replace="fragments/product.html :: product (1, '/img/product01.png', 'Product 1', 'Category', '$999', '$888', 4)"></div>
+							<div th:each="prod : ${products}" class="col-md-4 col-xs-6">
+								<div th:replace="fragments/product.html :: product (${prod.id}, ${prod.pictures[0].id}, ${prod.name}, ${prod.categoriesAsString}, ${prod.price}, ${prod.price}, 5)"></div>
 							</div>
-							<!-- /product -->
-
-							<!-- product -->
-							<div class="col-md-4 col-xs-6">
-								<div th:replace="fragments/product.html :: product (2, '/img/product02.png', 'Product 2', 'Category', '$999', '$888', 5)"></div>
-							</div>
-							<!-- /product -->
-
-							<div class="clearfix visible-sm visible-xs"></div>
-
-							<!-- product -->
-							<div class="col-md-4 col-xs-6">
-								<div th:replace="fragments/product.html :: product (3, '/img/product03.png', 'Product 3', 'Category', '$999', '$888', 3)"></div>
-							</div>
-							<!-- /product -->
-
-							<div class="clearfix visible-lg visible-md"></div>
-
-							<!-- product -->
-							<div class="col-md-4 col-xs-6">
-								<div th:replace="fragments/product.html :: product (4, '/img/product04.png', 'Product 4', 'Category', '$999', '$888', 4)"></div>
-							</div>
-							<!-- /product -->
-
-							<div class="clearfix visible-sm visible-xs"></div>
-
-							<!-- product -->
-							<div class="col-md-4 col-xs-6">
-								<div th:replace="fragments/product.html :: product (5, '/img/product05.png', 'Product 5', 'Category', '$999', '$888', 1)"></div>
-							</div>
-							<!-- /product -->
-
-							<!-- product -->
-							<div class="col-md-4 col-xs-6">
-								<div th:replace="fragments/product.html :: product (6, '/img/product06.png', 'Product 6', 'Category', '$999', '$888', 4)"></div>
-							</div>
-							<!-- /product -->
-
-							<div class="clearfix visible-lg visible-md visible-sm visible-xs"></div>
-
-							<!-- product -->
-							<div class="col-md-4 col-xs-6">
-								<div th:replace="fragments/product.html :: product (7, '/img/product07.png', 'Product 7', 'Category', '$999', '$888', 5)"></div>
-							</div>
-							<!-- /product -->
-
-							<!-- product -->
-							<div class="col-md-4 col-xs-6">
-								<div th:replace="fragments/product.html :: product (8, '/img/product08.png', 'Product 8', 'Category', '$999', '$888', 5)"></div>
-							</div>
-							<!-- /product -->
-
-							<div class="clearfix visible-sm visible-xs"></div>
-
-							<!-- product -->
-							<div class="col-md-4 col-xs-6">
-								<div th:replace="fragments/product.html :: product (9, '/img/product09.png', 'Product 9', 'Category', '$999', '$888', 5)"></div>
-							</div>
-							<!-- /product -->
 						</div>
 						<!-- /store products -->
 

@@ -5,9 +5,9 @@
 <body>
 
     <!-- product -->
-    <div th:fragment="product (productId, imageUrl, productName, categoryName, price, oldPrice, raiting)" class="product">
+    <div th:fragment="product (productId, pictureId, productName, categoryName, price, oldPrice, raiting)" class="product">
         <div class="product-img">
-            <img th:src="@{{image_url}(image_url=${imageUrl})}" alt="">
+            <img th:src="@{/picture/{pictureId}(pictureId=${pictureId})}" alt="">
             <div class="product-label">
                 <span class="sale">-30%</span>
                 <span class="new">NEW</span>
