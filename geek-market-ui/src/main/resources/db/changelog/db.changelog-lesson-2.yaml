@@ -1,4 +1,5 @@
 databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-lesson-2.yaml
   - changeSet:
       id: 1560697843763-1
       author: aleks_usharovskii (generated)

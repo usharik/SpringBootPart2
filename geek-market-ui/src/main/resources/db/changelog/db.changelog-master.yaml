@@ -1,11 +1,13 @@
 databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-master.yaml
   - preConditions:
       - runningAs:
           username: root
           password: root
 
   - include:
-      file: src/main/resources/db/changelog/db.changelog-lesson-1.yaml
+      file: db.changelog-lesson-1.yaml
+      relativeToChangelogFile: true
 
   - changeSet:
       id: lesson_1
@@ -15,7 +17,8 @@ databaseChangeLog:
             tag: lesson_1
 
   - include:
-      file: src/main/resources/db/changelog/db.changelog-lesson-2.yaml
+      file: db.changelog-lesson-2.yaml
+      relativeToChangelogFile: true
 
   - changeSet:
       id: lesson_2
