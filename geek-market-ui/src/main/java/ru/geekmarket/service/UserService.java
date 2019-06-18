@@ -1,7 +1,7 @@
 package ru.geekmarket.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
-import ru.geekmarket.service.model.SystemUser;
+import ru.geekmarket.service.repr.SystemUser;
 
 import java.util.List;
 
@@ -12,6 +12,8 @@ public interface UserService extends UserDetailsService {
     SystemUser findByUserName(String username);
 
     boolean save(SystemUser systemUser);
+
+    void delete(Long id);
 
     List<SystemUser> findAll();
 }

@@ -10,7 +10,7 @@ import ru.geekmarket.persist.model.Role;
 import ru.geekmarket.persist.model.User;
 import ru.geekmarket.persist.repo.RoleRepository;
 import ru.geekmarket.persist.repo.UserRepository;
-import ru.geekmarket.service.model.SystemUser;
+import ru.geekmarket.service.repr.SystemUser;
 
 import javax.transaction.Transactional;
 import java.util.*;
@@ -31,6 +31,7 @@ public class UserServiceJpaImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public SystemUser findById(Long id) {
         return new SystemUser(userRepository.findById(id).get());
     }
@@ -59,6 +60,12 @@ public class UserServiceJpaImpl implements UserService {
         user.setRoles(new HashSet<>(Collections.singletonList(roleRepository.findOneByName("ROLE_CLIENT"))));
         userRepository.save(user);
         return true;
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        userRepository.deleteById(id);
     }
 
     @Override
