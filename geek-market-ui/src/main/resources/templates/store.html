@@ -223,7 +223,7 @@
 						<div class="row">
 							<!-- product -->
 							<div th:each="prod : ${products}" class="col-md-4 col-xs-6">
-								<div th:replace="fragments/product.html :: product (${prod.id}, ${prod.pictures[0].id}, ${prod.name}, ${prod.categoriesAsString}, ${prod.price}, ${prod.price}, 5)"></div>
+								<div th:replace="fragments/product.html :: product (${prod}, 5)"></div>
 							</div>
 						</div>
 						<!-- /store products -->

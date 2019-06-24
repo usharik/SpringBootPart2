@@ -368,7 +368,7 @@
 
 					<th:block th:each="prod,iter : ${products}">
                         <div class="col-md-3 col-xs-6">
-                            <div th:replace="fragments/product.html :: product (${prod.id}, ${prod.pictures[0].id}, ${prod.name}, ${prod.categoriesAsString}, ${prod.price}, ${prod.price}, 5)"></div>
+                            <div th:replace="fragments/product.html :: product (${prod}, 5)"></div>
                         </div>
 
 						<div th:if="${iter.count % 2 == 0}" class="clearfix visible-sm visible-xs"></div>

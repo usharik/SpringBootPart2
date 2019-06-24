@@ -5,20 +5,20 @@
 <body>
 
     <!-- product -->
-    <div th:fragment="product (productId, pictureId, productName, categoryName, price, oldPrice, raiting)" class="product">
+    <div th:fragment="product (product, raiting)" class="product">
         <div class="product-img">
-            <img th:src="@{/picture/{pictureId}(pictureId=${pictureId})}" alt="">
+            <img th:src="@{/picture/{pictureId}(pictureId=${product.pictures[0].id})}" alt="">
             <div class="product-label">
                 <span class="sale">-30%</span>
                 <span class="new">NEW</span>
             </div>
         </div>
         <div class="product-body">
-            <p class="product-category" th:text="${categoryName}">Category</p>
-            <h3 class="product-name"><a th:href="@{/product/{id}(id=${productId})}" th:text="${productName}">product name goes here</a></h3>
+            <p class="product-category" th:text="${product.categoriesAsString}">Category</p>
+            <h3 class="product-name"><a th:href="@{/product/{id}(id=${product.id})}" th:text="${product.name}">product name goes here</a></h3>
             <h4 class="product-price">
-                <span th:text="${price}" th:remove="tag">$980.00</span>
-                <del class="product-old-price" th:text="${oldPrice}">$990.00</del>
+                <span th:text="${product.price}" th:remove="tag">$980.00</span>
+                <del class="product-old-price" th:text="${product.price}">$990.00</del>
             </h4>
             <div class="product-rating">
                 <th:block th:each="i : ${#numbers.sequence( 1, 5)}">
@@ -32,7 +32,12 @@
             </div>
         </div>
         <div class="add-to-cart">
-            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+            <form th:action="@{/cart/update}" method="post">
+                <input type="hidden" th:value="${product.id}" name="productId" id="productId">
+                <input type="hidden" value="1" name="qty" id="qty">
+                <input type="hidden" th:value="@{__${#httpServletRequest.requestURI}__}" name="pageUrl" id="pageUrl">
+                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+            </form>
         </div>
     </div>
     <!-- /product -->
@@ -53,15 +58,15 @@
     </div>
     <!-- /product widget -->
 
-    <div th:fragment="cartProductWidgetSmall (productId, imageUrl, productName, categoryName, price, qty)" class="product-widget">
+    <div th:fragment="cartProductWidgetSmall (product, qty)" class="product-widget">
         <div class="product-img">
-            <img th:src="@{{image_url}(image_url=${imageUrl})}" alt="">
+            <img th:src="@{/picture/{pictureId}(pictureId=${product.pictures[0].id})}" alt="">
         </div>
         <div class="product-body">
-            <h3 class="product-name"><a th:href="@{/product/{id}(id=${productId})}" th:text="${productName}">product name goes here</a></h3>
+            <h3 class="product-name"><a th:href="@{/product/{id}(id=${product.id})}" th:text="${product.name}">product name goes here</a></h3>
             <h4 class="product-price">
-                <span class="qty" th:text="qty">1x</span>
-                <span th:text="${price}" th:remove="tag">$980.00</span>
+                <span class="qty">[[${qty}]]x</span>
+                <span th:text="${product.price}" th:remove="tag">$980.00</span>
             </h4>
         </div>
         <button class="delete"><i class="fa fa-close"></i></button>

@@ -3,11 +3,11 @@ package ru.geekmarket.controller.repr;
 import org.springframework.web.multipart.MultipartFile;
 import ru.geekmarket.persist.model.Brand;
 import ru.geekmarket.persist.model.Category;
-import ru.geekmarket.persist.model.Picture;
 import ru.geekmarket.persist.model.Product;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -23,7 +23,7 @@ public class ProductRepr {
 
     private Brand brand;
 
-    private List<Picture> pictures;
+    private List<PictureRepr> pictures;
 
     private MultipartFile[] newPictures;
 
@@ -36,7 +36,9 @@ public class ProductRepr {
         this.price = product.getPrice();
         this.categories = product.getCategories();
         this.brand = product.getBrand();
-        this.pictures = product.getPictures();
+        this.pictures = product.getPictures().stream()
+                .map(PictureRepr::new)
+                .collect(Collectors.toList());
     }
 
     public Long getId() {
@@ -86,11 +88,11 @@ public class ProductRepr {
         this.brand = brand;
     }
 
-    public List<Picture> getPictures() {
+    public List<PictureRepr> getPictures() {
         return pictures;
     }
 
-    public void setPictures(List<Picture> pictures) {
+    public void setPictures(List<PictureRepr> pictures) {
         this.pictures = pictures;
     }
 
@@ -100,5 +102,18 @@ public class ProductRepr {
 
     public void setNewPictures(MultipartFile[] newPictures) {
         this.newPictures = newPictures;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductRepr that = (ProductRepr) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

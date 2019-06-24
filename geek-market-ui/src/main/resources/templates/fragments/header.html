@@ -106,16 +106,17 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>Your Cart</span>
-                                <div class="qty">3</div>
+                                <div class="qty" th:text="${@cartService.itemsQty}">3</div>
                             </a>
                             <div class="cart-dropdown">
                                 <div class="cart-list">
-                                    <div th:replace="fragments/product.html :: cartProductWidgetSmall (1, '/img/product01.png', 'Product 1', 'Category', '$999', '1x')"></div>
-                                    <div th:replace="fragments/product.html :: cartProductWidgetSmall (2, '/img/product02.png', 'Product 2', 'Category', '$999', '3x')"></div>
+                                    <th:block th:each="item : ${@cartService.findAllItems()}">
+                                        <div th:replace="fragments/product.html :: cartProductWidgetSmall (${item.key.product}, ${item.value})"></div>
+                                    </th:block>
                                 </div>
                                 <div class="cart-summary">
-                                    <small>3 Item(s) selected</small>
-                                    <h5>SUBTOTAL: $2940.00</h5>
+                                    <small>[[${@cartService.itemsQty}]] Item(s) selected</small>
+                                    <h5>SUBTOTAL: [[${@cartService.subTotal}]]</h5>
                                 </div>
                                 <div class="cart-btns">
                                     <a th:href="@{cart}">View Cart</a>
