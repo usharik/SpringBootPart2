@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
+import ru.geekmarket.aspect.TrackTime;
 import ru.geekmarket.controller.repr.ProductRepr;
 import ru.geekmarket.persist.model.Picture;
 import ru.geekmarket.persist.model.PictureData;
@@ -27,6 +28,7 @@ public class ProductServiceImpl implements ProductService {
         this.productRepository = productRepository;
     }
 
+    @TrackTime
     @Override
     @Transactional
     public List<ProductRepr> findAll() {
