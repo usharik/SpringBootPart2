@@ -97,7 +97,7 @@
 									<div class="products-slick" data-nav="#slick-nav-1">
 
 										<th:block th:each="prod : ${products}">
-											<div th:replace="fragments/product.html :: product (${prod.id}, ${prod.pictures[0].id}, ${prod.name}, ${prod.categoriesAsString}, ${prod.price}, ${prod.price}, 5)"></div>
+											<div th:replace="fragments/product.html :: product (${prod}, 5)"></div>
 										</th:block>
 
 									</div>
@@ -184,6 +184,10 @@
 					</div>
 					<!-- /section title -->
 
+					<th:block th:each="item : ${cartItems}">
+						<span th:text="${item.key.product}"></span>
+					</th:block>
+
 					<!-- Products tab & slick -->
 					<div class="col-md-12">
 						<div class="row">
@@ -193,7 +197,7 @@
 									<div class="products-slick" data-nav="#slick-nav-2">
 
 										<th:block th:each="prod : ${products}">
-											<div th:replace="fragments/product.html :: product (${prod.id}, ${prod.pictures[0].id}, ${prod.name}, ${prod.categoriesAsString}, ${prod.price}, ${prod.price}, 5)"></div>
+											<div th:replace="fragments/product.html :: product (${prod}, 5)"></div>
 										</th:block>
 									</div>
 									<div id="slick-nav-2" class="products-slick-nav"></div>
