@@ -3,6 +3,7 @@
 * all classes which are stored in Redis Session should implements Serializable interface
 * run this command in project root directory to run Redis server with docker-compose
 `docker-compose up -d`
+* run the geek-market-ui application with Spring profile `redis`
 * you can access the Redis console with command
 `docker exec -it geek-market-ui_redis_1 redis-cli`
 * use `KEYS` command in redis console to get all keys in DB
