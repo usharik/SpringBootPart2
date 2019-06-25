@@ -5,13 +5,14 @@ import ru.geekmarket.persist.model.Brand;
 import ru.geekmarket.persist.model.Category;
 import ru.geekmarket.persist.model.Product;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ProductRepr {
+public class ProductRepr implements Serializable {
 
     private Long id;
 

@@ -13,11 +13,12 @@ import ru.geekmarket.persist.repo.ProductRepository;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements ProductService, Serializable {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 

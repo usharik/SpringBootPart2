@@ -1,6 +1,8 @@
 package ru.geekmarket.controller.repr;
 
-public class CategoryRepr {
+import java.io.Serializable;
+
+public class CategoryRepr implements Serializable {
 
     private long id;
 

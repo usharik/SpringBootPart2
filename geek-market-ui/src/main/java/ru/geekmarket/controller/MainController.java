@@ -21,7 +21,7 @@ public class MainController {
 
     private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
-    @Value("#{${my.new.property} + ' hahahah'}")
+    @Value("#{'${my.new.property}' + ' hahahah'}")
     private String myNewProperty;
 
     private final ProductService productService;

@@ -3,9 +3,10 @@ package ru.geekmarket.service.repr;
 import ru.geekmarket.persist.model.Role;
 import ru.geekmarket.persist.model.User;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class SystemUser {
+public class SystemUser implements Serializable {
 
     private Long id;
 

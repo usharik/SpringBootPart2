@@ -6,12 +6,13 @@ import ru.geekmarket.service.repr.ProductInfo;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class CartServiceImpl implements CartService {
+public class CartServiceImpl implements CartService, Serializable {
 
     private static final Logger logger = LoggerFactory.getLogger(CartServiceImpl.class);
 

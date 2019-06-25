@@ -2,9 +2,10 @@ package ru.geekmarket.service.repr;
 
 import ru.geekmarket.controller.repr.ProductRepr;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class ProductInfo {
+public class ProductInfo implements Serializable {
 
     private ProductRepr product;
 

@@ -2,7 +2,9 @@ package ru.geekmarket.controller.repr;
 
 import ru.geekmarket.persist.model.Picture;
 
-public class PictureRepr {
+import java.io.Serializable;
+
+public class PictureRepr implements Serializable {
 
     private Long id;
 

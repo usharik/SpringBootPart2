@@ -1,0 +1,1 @@
+# Using liquibase with hibernate liquibase plugin
