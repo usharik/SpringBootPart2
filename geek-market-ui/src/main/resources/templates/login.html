@@ -18,28 +18,11 @@
 				<!-- row -->
 				<div class="row">
 					<div class="col-md-12">
-						<h3 class="breadcrumb-header">Login page</h3>
+						<h3 class="breadcrumb-header">Login / Register Account</h3>
 						<ul class="breadcrumb-tree">
 							<li><a href="#">Home</a></li>
-							<li class="active">Login</li>
+							<li class="active">Login/Register</li>
 						</ul>
-					</div>
-
-					<div class="col-md-7">
-						<!-- Login form -->
-						<form class="login-form" th:action="@{/authenticateTheUser}" method="POST">
-							<div class="form-group">
-								<input class="input" type="text" name="username" placeholder="User name">
-							</div>
-							<div class="form-group">
-								<input class="input" type="password" name="password" placeholder="Password">
-							</div>
-							<div class="form-group">
-								<input class="primary-btn order-submit" type="submit" name="submit">
-							</div>
-
-							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-						</form>
 					</div>
 				</div>
 				<!-- /row -->
@@ -54,6 +37,40 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
+					<div class="col-md-6 login-border">
+						<!-- Login form -->
+						<form class="login-form" th:action="@{/authenticateTheUser}" method="POST">
+							<div class="section-title">
+								<h3 class="title">Login</h3>
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="username" placeholder="User name">
+							</div>
+							<div class="form-group">
+								<input class="input" type="password" name="password" placeholder="Password">
+							</div>
+							<div class="form-group">
+								<input class="primary-btn order-submit" type="submit" name="submit" value="Login">
+							</div>
+
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+						</form>
+					</div>
+
+					<div class="col-md-6">
+						<!-- Register form -->
+						<form class="login-form" th:action="@{/register}" method="GET">
+							<div class="section-title">
+								<h3 class="title">Register</h3>
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="email" placeholder="Email address">
+							</div>
+							<div class="form-group">
+								<input class="primary-btn order-submit" type="submit" name="submit" value="Register">
+							</div>
+						</form>
+					</div>
 				</div>
 				<!-- /row -->
 			</div>

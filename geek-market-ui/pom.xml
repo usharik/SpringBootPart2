@@ -55,6 +55,17 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.webflow</groupId>
+            <artifactId>spring-webflow</artifactId>
+            <version>2.5.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.webflow</groupId>
+            <artifactId>org.springframework.js</artifactId>
+            <version>2.0.5.RELEASE</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
         </dependency>
@@ -110,6 +121,7 @@
                     <include>**/static/**/*.*</include>
                     <include>**/templates/**/*.*</include>
                     <include>**/db/**/*.*</include>
+                    <include>**/flows/**/*.*</include>
                 </includes>
             </resource>
         </resources>
