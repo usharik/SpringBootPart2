@@ -11,6 +11,8 @@ public interface UserService extends UserDetailsService {
 
     SystemUser findByUserName(String username);
 
+    boolean existsUserByEmail(String email);
+
     boolean save(SystemUser systemUser);
 
     void delete(Long id);

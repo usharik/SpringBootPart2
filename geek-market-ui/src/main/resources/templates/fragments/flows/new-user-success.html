@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header.html :: head"></head>
+
+<body>
+<!-- HEADER -->
+<header th:replace="fragments/header.html :: header"></header>
+<!-- /HEADER -->
+
+<!-- NAVIGATION -->
+<nav th:replace="fragments/header.html :: navigation"></nav>
+<!-- /NAVIGATION -->
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="breadcrumb-header">Regular Page</h3>
+                <ul class="breadcrumb-tree">
+                    <li><a th:href="@{/}">Home</a></li>
+                    <li><a href="#">Password</a></li>
+                    <li><a href="#">Personal information</a></li>
+                    <li><a href="#">Confirm and submit</a></li>
+                    <li class="active">Success</li>
+                </ul>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="section-title">
+                <h3 class="title">New user created successfully</h3>
+                <h2>Press <a th:href="@{/login}">here</a> to login</h2>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+<!-- NEWSLETTER -->
+<div th:replace="fragments/footer.html :: newsletter"></div>
+<!-- /NEWSLETTER -->
+
+<!-- FOOTER -->
+<footer th:replace="fragments/footer.html :: footer"></footer>
+<!-- /FOOTER -->
+
+<!-- jQuery Plugins -->
+<script th:replace="fragments/footer.html :: scripts"></script>
+
+</body>
+</html>

@@ -6,6 +6,9 @@ import ru.geekmarket.persist.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query("from User u join fetch u.roles r where u.userName = :userName")
     User findOneByUserName(String userName);
+
+    boolean existsUserByEmail(String email);
+
+    User findUserByEmail(String email);
 }
