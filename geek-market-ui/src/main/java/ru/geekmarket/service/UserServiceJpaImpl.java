@@ -3,9 +3,7 @@ package ru.geekmarket.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AccountStatusException;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -39,14 +37,13 @@ public class UserServiceJpaImpl implements UserService {
     }
 
     @Override
-    public SystemUser findById(Long id) {
-        return new SystemUser(userRepository.findById(id).get());
+    public Optional<SystemUser> findById(Long id) {
+        return userRepository.findById(id).map(SystemUser::new);
     }
 
     @Override
-    public SystemUser findByUserName(String username) {
-        User user = userRepository.findOneByUserName(username);
-        return new SystemUser(user);
+    public Optional<SystemUser> findByUserName(String username) {
+        return userRepository.findOneByUserName(username).map(SystemUser::new);
     }
 
     @Override
@@ -85,13 +82,13 @@ public class UserServiceJpaImpl implements UserService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        SystemUser user = findByUserName(userName);
-        if (user == null) {
+        Optional<SystemUser> user = findByUserName(userName);
+        if (!user.isPresent()) {
             throw new UsernameNotFoundException("Invalid username or password");
         }
         try {
-            return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),
-                    mapRolesToAuthorities(user.getRoles()));
+            return new org.springframework.security.core.userdetails.User(user.get().getUserName(), user.get().getPassword(),
+                    mapRolesToAuthorities(user.get().getRoles()));
         } catch (Exception ex) {
             logger.error("", ex);
             throw new BadCredentialsException("Internal error. Try again latter.");

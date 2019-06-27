@@ -18,18 +18,22 @@ import org.springframework.webflow.mvc.servlet.FlowHandlerMapping;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.webflow.view.AjaxThymeleafViewResolver;
 import org.thymeleaf.spring5.webflow.view.FlowAjaxThymeleafView;
-import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 @Configuration
 public class WebFlowWithMvcConfig extends AbstractFlowConfiguration {
 
     private final LocalValidatorFactoryBean localValidatorFactoryBean;
 
+    private final SpringTemplateEngine templateEngine;
+
     @Autowired
-    WebFlowWithMvcConfig(LocalValidatorFactoryBean localValidatorFactoryBean) {
+    public WebFlowWithMvcConfig(LocalValidatorFactoryBean localValidatorFactoryBean, SpringTemplateEngine templateEngine) {
         this.localValidatorFactoryBean = localValidatorFactoryBean;
+        this.templateEngine = templateEngine;
     }
 
+    // About flow Ids calculation
+    // https://stackoverflow.com/questions/23835353/spring-webflow-how-to-get-list-of-flow-ids
     @Bean
     public FlowDefinitionRegistry flowRegistry() {
         return getFlowDefinitionRegistryBuilder()
@@ -82,28 +86,8 @@ public class WebFlowWithMvcConfig extends AbstractFlowConfiguration {
     public AjaxThymeleafViewResolver thymeleafViewResolver() {
         AjaxThymeleafViewResolver viewResolver = new AjaxThymeleafViewResolver();
         viewResolver.setViewClass(FlowAjaxThymeleafView.class);
-        viewResolver.setTemplateEngine(this.templateEngine());
+        viewResolver.setTemplateEngine(templateEngine);
         viewResolver.setCharacterEncoding("UTF-8");
         return viewResolver;
-    }
-
-    @Bean
-    @Description("Thymeleaf template resolver serving HTML 5")
-    public ClassLoaderTemplateResolver templateResolver() {
-        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setPrefix("templates/");
-        templateResolver.setCacheable(false);
-        templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode("HTML5");
-        templateResolver.setCharacterEncoding("UTF-8");
-        return templateResolver;
-    }
-
-    @Bean
-    @Description("Thymeleaf template engine with Spring integration")
-    public SpringTemplateEngine templateEngine() {
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(this.templateResolver());
-        return templateEngine;
     }
 }

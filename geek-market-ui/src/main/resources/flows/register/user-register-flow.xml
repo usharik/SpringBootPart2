@@ -16,7 +16,7 @@
         <evaluate expression="basicInfo.email = email" />
     </on-start>
 
-    <view-state id="basic" view="fragments/flows/new-user-basic" model="basicInfo">
+    <view-state id="basic" view="flows/register/new-user-basic" model="basicInfo">
         <transition on="personal" to="validateBasicUserInfo" />
         <on-exit>
             <evaluate expression="userRegisterHandler.addBasicUserInfo(flowScope.userRegisterModel, basicInfo)" />
@@ -29,7 +29,7 @@
         <transition on="failure" to="basic" />
     </action-state>
 
-    <view-state id="personal" view="fragments/flows/new-user-personal" model="personalInfo">
+    <view-state id="personal" view="flows/register/new-user-personal" model="personalInfo">
         <transition on="basic" to="basic" />
         <transition on="confirm" to="validatePersonal" />
         <on-exit>
@@ -43,7 +43,7 @@
         <transition on="failure" to="personal" />
     </action-state>
 
-    <view-state id="confirm" view="fragments/flows/new-user-confirm" model="flowScope.userRegisterModel">
+    <view-state id="confirm" view="flows/register/new-user-confirm" model="flowScope.userRegisterModel">
         <transition on="personal" to="personal" />
         <transition on="basic" to="basic" />
         <transition on="submit" to="submit" />
@@ -56,7 +56,7 @@
     </action-state>
 
     <!-- end state -->
-    <end-state id="success" view="fragments/flows/new-user-success" />
+    <end-state id="success" view="flows/register/new-user-success" />
     <end-state id="home" view="externalRedirect:contextRelative:/" />
 
     <!-- Global Transition -->

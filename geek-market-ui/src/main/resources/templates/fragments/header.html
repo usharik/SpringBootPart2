@@ -51,8 +51,21 @@
             </ul>
             <ul class="header-links pull-right">
                 <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-                <li sec:authorize="isAnonymous()"><a th:href="@{/login}"><i class="fa fa-user-o"></i> Login</a></li>
-                <li sec:authorize="isAuthenticated()"><a sec:authentication="name" th:href="@{/profile}"><i class="fa fa-user-o"></i> Username</a></li>
+                <li sec:authorize="isAnonymous()">
+                    <a th:href="@{/login}"><i class="fa fa-user-o"></i>Login</a>
+                </li>
+                <li sec:authorize="isAuthenticated()">
+                    <a th:href="@{/profile}">
+                        <i class="fa fa-user-o"></i>
+                        <th:block sec:authentication="name"/> profile
+                    </a>
+                </li>
+                <li sec:authorize="isAuthenticated()">
+                    <a href="javascript:document.getElementById('logout').submit()">
+                        <i class="fa fa-user-o"></i> Logout
+                    </a>
+                    <form id="logout" method="post" th:action="@{/logout}"></form>
+                </li>
             </ul>
         </div>
     </div>
@@ -122,7 +135,7 @@
                                 </div>
                                 <div class="cart-btns">
                                     <a th:href="@{cart}">View Cart</a>
-                                    <a th:href="@{checkout}">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a th:href="@{checkout}">Checkout <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
