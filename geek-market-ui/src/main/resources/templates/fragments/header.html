@@ -28,6 +28,7 @@
 
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/chat.css}"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -65,6 +66,9 @@
                         <i class="fa fa-user-o"></i> Logout
                     </a>
                     <form id="logout" method="post" th:action="@{/logout}"></form>
+                </li>
+                <li>
+                    <a id="chatLink" href="#myModal" data-backdrop="false" data-toggle="modal">Click Me</a>
                 </li>
             </ul>
         </div>
@@ -158,6 +162,9 @@
         <!-- container -->
     </div>
     <!-- /MAIN HEADER -->
+
+    <div th:replace="fragments/chat.html :: chat"></div>
+
 </header>
 <!-- /HEADER -->
 
