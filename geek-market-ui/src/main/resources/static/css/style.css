@@ -45,6 +45,7 @@ Table OF Contents
 11 > FOOTER
 11 > SLICK STYLE
 12 > RESPONSIVE
+13 > LOGIN
 ------------------------------------*/
 
 /*=========================================================
@@ -1869,10 +1870,6 @@ textarea.input {
   border-right: 1px solid #E4E7ED;
 }
 
-.login-form {
-  margin: 15px 0px;
-}
-
 .order-summary {
   margin: 15px 0px;
 }
@@ -2191,4 +2188,16 @@ textarea.input {
     float: none;
     margin-top: 10px;
   }
+}
+
+/*=========================================================
+	14 -> LOGIN
+===========================================================*/
+
+.login-border {
+  border: 1px solid #E4E7ED;
+}
+
+.login-form {
+  margin: 15px;
 }

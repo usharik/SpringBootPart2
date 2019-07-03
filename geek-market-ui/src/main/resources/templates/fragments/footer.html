@@ -139,11 +139,15 @@
     <th:block th:fragment="scripts">
         <!-- jQuery Plugins -->
         <script th:src="@{/js/jquery.min.js}"></script>
+        <script th:src="@{http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js}"></script>
         <script th:src="@{/js/bootstrap.min.js}"></script>
         <script th:src="@{/js/slick.min.js}"></script>
         <script th:src="@{/js/nouislider.min.js}"></script>
         <script th:src="@{/js/jquery.zoom.min.js}"></script>
+        <script th:src="@{/webjars/sockjs-client/sockjs.min.js}"></script>
+        <script th:src="@{/webjars/stomp-websocket/stomp.min.js}"></script>
         <script th:src="@{/js/main.js}"></script>
+        <script th:src="@{/js/chat.js}"></script>
     </th:block>
 </body>
 

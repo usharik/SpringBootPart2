@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header.html :: head"></head>
+
+<body>
+<!-- HEADER -->
+<header th:replace="fragments/header.html :: header"></header>
+<!-- /HEADER -->
+
+<!-- NAVIGATION -->
+<nav th:replace="fragments/header.html :: navigation"></nav>
+<!-- /NAVIGATION -->
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="breadcrumb-header">New user password</h3>
+                <ul class="breadcrumb-tree">
+                    <li><a th:href="@{'~' + ${flowExecutionUrl} + '&_eventId_home'}">Home</a></li>
+                    <li class="active">Password</li>
+                </ul>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-6 login-border">
+                <form class="login-form" th:object="${basicInfo}" th:action="@{'~' + ${flowExecutionUrl} + '&_eventId_personal'}"
+                      method="POST" enctype="multipart/form-data">
+
+                    <div class="section-title">
+                        <h3 class="title">New user password</h3>
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="text" th:field="*{email}" disabled>
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="text" th:field="*{username}" placeholder="User name">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></small>
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="password" th:field="*{password}" placeholder="Password">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="password" th:field="*{confirmPassword}" placeholder="Password">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></small>
+                    </div>
+                    <div class="form-group">
+                        <button class="primary-btn order-submit" type="submit">Next</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+<!-- NEWSLETTER -->
+<div th:replace="fragments/footer.html :: newsletter"></div>
+<!-- /NEWSLETTER -->
+
+<!-- FOOTER -->
+<footer th:replace="fragments/footer.html :: footer"></footer>
+<!-- /FOOTER -->
+
+<!-- jQuery Plugins -->
+<script th:replace="fragments/footer.html :: scripts"></script>
+
+</body>
+</html>

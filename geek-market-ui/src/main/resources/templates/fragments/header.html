@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:fragment="head">
     <meta charset="utf-8">
@@ -27,6 +28,7 @@
 
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/chat.css}"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -50,7 +52,24 @@
             </ul>
             <ul class="header-links pull-right">
                 <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-                <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+                <li sec:authorize="isAnonymous()">
+                    <a th:href="@{/login}"><i class="fa fa-user-o"></i>Login</a>
+                </li>
+                <li sec:authorize="isAuthenticated()">
+                    <a th:href="@{/profile}">
+                        <i class="fa fa-user-o"></i>
+                        <th:block sec:authentication="name"/> profile
+                    </a>
+                </li>
+                <li sec:authorize="isAuthenticated()">
+                    <a href="javascript:document.getElementById('logout').submit()">
+                        <i class="fa fa-user-o"></i> Logout
+                    </a>
+                    <form id="logout" method="post" th:action="@{/logout}"></form>
+                </li>
+                <li>
+                    <a id="chatLink" href="#myModal" data-backdrop="false" data-toggle="modal">Click Me</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -120,7 +139,7 @@
                                 </div>
                                 <div class="cart-btns">
                                     <a th:href="@{cart}">View Cart</a>
-                                    <a th:href="@{checkout}">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a th:href="@{checkout}">Checkout <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -143,6 +162,9 @@
         <!-- container -->
     </div>
     <!-- /MAIN HEADER -->
+
+    <div th:replace="fragments/chat.html :: chat"></div>
+
 </header>
 <!-- /HEADER -->
 

@@ -27,18 +27,18 @@ public class SystemUser implements Serializable {
     }
 
     public SystemUser(String userName, String password, String firstName,
-                      String lastName, String email, Set<Role> roles) {
+                      String lastName, String email) {
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.roles = roles;
     }
 
     public SystemUser(User user) {
         this.id = user.getId();
         this.userName = user.getUserName();
+        this.password = user.getPassword();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.email = user.getEmail();

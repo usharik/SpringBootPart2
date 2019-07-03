@@ -1,6 +1,9 @@
 package ru.geekmarket.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +19,10 @@ import javax.transaction.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Transactional
 public class UserServiceJpaImpl implements UserService {
+
+    private final Logger logger = LoggerFactory.getLogger(UserServiceJpaImpl.class);
 
     private UserRepository userRepository;
     private RoleRepository roleRepository;
@@ -31,21 +37,21 @@ public class UserServiceJpaImpl implements UserService {
     }
 
     @Override
-    @Transactional
-    public SystemUser findById(Long id) {
-        return new SystemUser(userRepository.findById(id).get());
+    public Optional<SystemUser> findById(Long id) {
+        return userRepository.findById(id).map(SystemUser::new);
     }
 
     @Override
-    @Transactional
-    public SystemUser findByUserName(String username) {
-        User user = userRepository.findOneByUserName(username);
-        return new SystemUser(user.getUserName(), user.getPassword(),
-                user.getFirstName(), user.getLastName(), user.getEmail(), user.getRoles());
+    public Optional<SystemUser> findByUserName(String username) {
+        return userRepository.findOneByUserName(username).map(SystemUser::new);
     }
 
     @Override
-    @Transactional
+    public boolean existsUserByEmail(String email) {
+        return userRepository.existsUserByEmail(email);
+    }
+
+    @Override
     public boolean save(SystemUser systemUser) {
         User user = systemUser.getId() != null ? userRepository
                 .findById(systemUser.getId())
@@ -63,7 +69,6 @@ public class UserServiceJpaImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public void delete(Long id) {
         userRepository.deleteById(id);
     }
@@ -76,14 +81,18 @@ public class UserServiceJpaImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        SystemUser user = findByUserName(userName);
-        if (user == null) {
+        Optional<SystemUser> user = findByUserName(userName);
+        if (!user.isPresent()) {
             throw new UsernameNotFoundException("Invalid username or password");
         }
-        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),
-                mapRolesToAuthorities(user.getRoles()));
+        try {
+            return new org.springframework.security.core.userdetails.User(user.get().getUserName(), user.get().getPassword(),
+                    mapRolesToAuthorities(user.get().getRoles()));
+        } catch (Exception ex) {
+            logger.error("", ex);
+            throw new BadCredentialsException("Internal error. Try again latter.");
+        }
     }
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
