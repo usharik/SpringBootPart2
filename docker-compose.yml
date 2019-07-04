@@ -5,6 +5,49 @@ services:
   redis:
     image: 'bitnami/redis:latest'
     environment:
-      - ALLOW_EMPTY_PASSWORD=yes
+      - 'ALLOW_EMPTY_PASSWORD=yes'
     ports:
       - '6379:6379'
+
+  geek-market-eureka-server:
+    image: 'geek-market-eureka'
+    ports:
+      - '8761:8761'
+
+  geek-market-chatbot_1:
+    image: 'geek-market-chatbot'
+    environment:
+      - 'PORT=5000'
+      - 'BOT_NAME=chatbot1'
+      - 'EUREKA_URI=http://geek-market-eureka-server:8761/eureka'
+    depends_on:
+      - geek-market-eureka-server
+
+  geek-market-chatbot_2:
+    image: 'geek-market-chatbot'
+    environment:
+      - 'PORT=5001'
+      - 'BOT_NAME=chatbot2'
+      - 'EUREKA_URI=http://geek-market-eureka-server:8761/eureka'
+    depends_on:
+      - geek-market-eureka-server
+
+  geek-market-chatbot_3:
+    image: 'geek-market-chatbot'
+    environment:
+      - 'PORT=5002'
+      - 'BOT_NAME=chatbot3'
+      - 'EUREKA_URI=http://geek-market-eureka-server:8761/eureka'
+    depends_on:
+      - geek-market-eureka-server
+
+  geek-market-ui:
+    image: 'geek-market-ui'
+    environment:
+      - 'REDIS_HOST=redis'
+      - 'EUREKA_URI=http://geek-market-eureka-server:8761/eureka'
+    ports:
+      - '8081:8081'
+    depends_on:
+      - redis
+      - geek-market-eureka-server

@@ -12,6 +12,8 @@
     <modules>
         <module>geek-market-ui</module>
         <module>pure-spring-example</module>
+        <module>geek-market-chatbot</module>
+        <module>geek-market-eureka</module>
     </modules>
 
 </project>
