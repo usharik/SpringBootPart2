@@ -1,12 +1,10 @@
 FROM openjdk:8-jdk-alpine
 
-COPY ./target/geek-market-ui-0.0.1-SNAPSHOT.jar /bin
+ARG JAR_FILE
 
-# 'host.docker.internal' could be used to access docker host OS 'localhost'
-ENV MYSQL_HOST=host.docker.internal
-ENV REDIS_HOST=host.docker.internal
+COPY ./target/${JAR_FILE} /bin/app.jar
+COPY ./entrypoint.sh /bin/entrypoint.sh
 
-ENTRYPOINT ["/usr/bin/java"]
-CMD ["-jar", "/bin/geek-market-ui-0.0.1-SNAPSHOT.jar"]
+CMD ["/bin/entrypoint.sh"]
 
 EXPOSE 8081

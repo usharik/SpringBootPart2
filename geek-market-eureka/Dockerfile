@@ -1,8 +1,10 @@
 FROM openjdk:8-jdk-alpine
 
-COPY ./target/geek-market-eureka-0.0.1-SNAPSHOT.jar /bin
+ARG JAR_FILE
 
-ENTRYPOINT ["/usr/bin/java"]
-CMD ["-jar", "/bin/geek-market-eureka-0.0.1-SNAPSHOT.jar"]
+COPY ./target/${JAR_FILE} /bin/app.jar
+COPY ./entrypoint.sh /bin/entrypoint.sh
+
+CMD ["/bin/entrypoint.sh"]
 
 EXPOSE 8761
