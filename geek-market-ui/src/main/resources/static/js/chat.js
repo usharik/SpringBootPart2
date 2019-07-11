@@ -27,12 +27,14 @@ function disconnect() {
 }
 
 function sendMessage() {
+    var textInput = $("#message-text");
     stompClient.send("/chat_in/send_message", {},
         JSON.stringify({
             'username' : 'noname',
-            'message': $("#message-text").val()
+            'message': textInput.val()
         }));
-    $("ul.chat").append(buildMessageHtml('noname', $("#message-text").val(), true));
+    $("ul.chat").append(buildMessageHtml('noname', textInput.val(), true));
+    textInput.val('');
 }
 
 function buildMessageHtml(username, message, direction) {

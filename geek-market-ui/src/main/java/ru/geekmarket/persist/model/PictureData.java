@@ -1,5 +1,7 @@
 package ru.geekmarket.persist.model;
 
+import org.hibernate.type.descriptor.sql.LobTypeMappings;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -14,7 +16,7 @@ public class PictureData implements Serializable {
     private Long id;
 
     @Lob
-    @Column(name = "data", nullable = false, columnDefinition="MEDIUMBLOB")
+    @Column(name = "data", nullable = false)
     private byte[] data;
 
     public PictureData() {

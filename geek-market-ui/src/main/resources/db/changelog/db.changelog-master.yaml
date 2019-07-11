@@ -1,9 +1,5 @@
 databaseChangeLog:
   - logicalFilePath: db/changelog/db.changelog-master.yaml
-  - preConditions:
-      - runningAs:
-          username: root
-          password: root
 
   - include:
       file: db.changelog-lesson-1.yaml
