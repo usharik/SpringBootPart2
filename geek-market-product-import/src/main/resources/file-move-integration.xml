@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:file="http://www.springframework.org/schema/integration/file"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/integration
+			http://www.springframework.org/schema/integration/spring-integration.xsd
+			http://www.springframework.org/schema/integration/file
+			http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder/>
+
+    <file:inbound-channel-adapter id="filesIn"
+                                  directory="file:${dest.directory.path}" filter="onlyPropertyFiles"
+                                  auto-startup="true">
+        <int:poller id="poller" fixed-delay="5000"/>
+    </file:inbound-channel-adapter>
+
+    <int:service-activator input-channel="filesIn"
+                           output-channel="filesOut" ref="handler"/>
+
+    <file:outbound-channel-adapter id="filesOut"
+                                   directory="file:${source.directory.path}"/>
+
+    <bean id="handler" class="ru.geekmarket.productimport.FileHandler"/>
+    <bean id="onlyPropertyFiles"
+          class="org.springframework.integration.file.config.FileListFilterFactoryBean"
+          p:filenamePattern="*.txt"/>
+</beans>

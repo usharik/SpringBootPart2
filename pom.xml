@@ -18,6 +18,8 @@
         <module>pure-spring-example</module>
         <module>geek-market-chatbot</module>
         <module>geek-market-eureka</module>
+        <module>rabbitmq-demo</module>
+        <module>geek-market-product-import</module>
     </modules>
 
 </project>
