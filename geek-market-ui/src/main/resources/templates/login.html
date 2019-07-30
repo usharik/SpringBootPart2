@@ -44,14 +44,14 @@
 								<h3 class="title">Login</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="username" placeholder="User name">
+								<input id="inp-username" class="input" type="text" name="username" placeholder="User name">
                                 <small class="form-text text-danger" th:if="${#httpServletRequest.getParameter('error')}" th:text="${'Inccorect username or password'}"></small>
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="password" placeholder="Password">
+								<input id="inp-password" class="input" type="password" name="password" placeholder="Password">
 							</div>
 							<div class="form-group">
-								<button class="primary-btn order-submit" type="submit" name="submit">Login</button>
+								<button id="btn-login" class="primary-btn order-submit" type="submit" name="submit">Login</button>
 							</div>
 
 							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">

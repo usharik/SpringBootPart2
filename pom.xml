@@ -20,6 +20,7 @@
         <module>geek-market-eureka</module>
         <module>rabbitmq-demo</module>
         <module>geek-market-product-import</module>
+        <module>geek-market-ui-tests</module>
     </modules>
 
 </project>
